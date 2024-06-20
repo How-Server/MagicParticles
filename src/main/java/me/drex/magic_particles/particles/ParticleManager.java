@@ -8,6 +8,7 @@ import com.mojang.serialization.DataResult;
 import com.mojang.serialization.JsonOps;
 import eu.pb4.playerdata.api.PlayerDataApi;
 import me.drex.vanish.api.VanishAPI;
+import me.lucko.fabric.api.permissions.v0.Permissions;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.nbt.StringTag;
@@ -117,7 +118,7 @@ public class ParticleManager {
     }
 
     private static boolean shouldShow(ServerPlayer player) {
-        return (!VANISH || !VanishAPI.isVanished(player)) && !player.isSpectator();
+        return (!VANISH || !VanishAPI.isVanished(player)) && !player.isSpectator() && Permissions.check(player,"magic-particles.particle");
     }
 
     public static Map<String, MagicParticle> particles() {
