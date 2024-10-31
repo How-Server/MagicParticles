@@ -1,8 +1,8 @@
 {
   "text.magic_particles.overview": "<gold>粒子動畫 [</gold><yellow>${count}</yellow><gold>]:</gold>\n <red><run_cmd:'/mp disable'><hover:'<red>點我關閉!</red>'>關閉</hover></run_cmd></red> <gray>|</gray> ${list}",
   "text.magic_particles.overview.list.separator": "<gray>,</gray> ",
-  "text.magic_particles.overview.list.element": "<green><run_cmd:'/mp set ${id}'><hover:'<gold>${name}</gold>\n<dark_gray>id\\: ${id}</dark_gray>\n<green點我使用</green>'>${name}</hover></run_cmd></green>",
-  "text.magic_particles.unset": "<red粒子動畫已關閉</red>",
+  "text.magic_particles.overview.list.element": "<green><run_cmd:'/mp set ${id}'><hover:'<gold>${name}</gold>\n<dark_gray>id\\: ${id}</dark_gray>\n<green>點我使用</green>'>${name}</hover></run_cmd></green>",
+  "text.magic_particles.unset": "<red>粒子動畫已關閉</red>",
   "text.magic_particles.reload": "<gray>重新載入粒子動畫!</gray>",
   "text.magic_particles.error": "<dark_red>出現錯誤，請查看後台。</dark_red>",
   "text.magic_particles.unknown": "<red>未知的粒子動畫!</red>",
