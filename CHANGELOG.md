@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.1] - 2025-12-14
+### Fixed
+- Crash when disabling particles on 1.21.11
+
 ## [1.3.0] - 2025-08-08
 ### Added
 - Rotation field to images
