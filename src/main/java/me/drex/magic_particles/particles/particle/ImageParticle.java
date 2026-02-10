@@ -5,15 +5,15 @@ import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import me.drex.magic_particles.codec.CustomCodecs;
 import me.drex.magic_particles.particles.ParticleManager;
-import net.minecraft.Util;
+import net.minecraft.util.Util;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.arguments.EntityAnchorArgument;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.network.protocol.game.ClientboundLevelParticlesPacket;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 //? if >= 1.21.2 {
-/*import net.minecraft.util.ARGB;
-*///?}
+import net.minecraft.util.ARGB;
+//?}
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Display;
 import net.minecraft.world.phys.Vec2;
@@ -24,18 +24,20 @@ import org.joml.Vector3f;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.List;
+//? if < 1.21.5 {
+//import java.util.List;
+//? }
 import java.util.function.Consumer;
 
 public class ImageParticle extends AbstractParticle {
 
     //? if < 1.21.5 {
-    public static final Codec<Vec2> VEC_2_CODEC = Codec.FLOAT
+    /*public static final Codec<Vec2> VEC_2_CODEC = Codec.FLOAT
                 .listOf()
                 .comapFlatMap(list -> Util.fixedSize(list, 2).map(listx -> new Vec2(listx.getFirst(), listx.get(1))), vec2 -> List.of(vec2.x, vec2.y));
-    //?}
+    *///?}
 
-    public static final ResourceLocation LOCATION = ResourceLocation.withDefaultNamespace("image");
+    public static final Identifier LOCATION = Identifier.withDefaultNamespace("image");
     public static final MapCodec<ImageParticle> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
         Codec.STRING.fieldOf("image").forGetter(ImageParticle::image),
         Codec.FLOAT.fieldOf("size_x").forGetter(ImageParticle::sizeX),
@@ -45,10 +47,10 @@ public class ImageParticle extends AbstractParticle {
         CustomCodecs.ANCHOR.optionalFieldOf("anchor", EntityAnchorArgument.Anchor.FEET).forGetter(ImageParticle::anchor),
         Vec3.CODEC.optionalFieldOf("origin", Vec3.ZERO).forGetter(ImageParticle::origin),
         //? if >= 1.21.5 {
-        /*Vec2.CODEC.optionalFieldOf("rotation", Vec2.ZERO).forGetter(ImageParticle::rotation),
-        *///?} else {
-        VEC_2_CODEC.optionalFieldOf("rotation", Vec2.ZERO).forGetter(ImageParticle::rotation),
-         //?}
+        Vec2.CODEC.optionalFieldOf("rotation", Vec2.ZERO).forGetter(ImageParticle::rotation),
+        //?} else {
+        /*VEC_2_CODEC.optionalFieldOf("rotation", Vec2.ZERO).forGetter(ImageParticle::rotation),
+         *///?}
         Display.BillboardConstraints.CODEC.optionalFieldOf("billboard", Display.BillboardConstraints.FIXED).forGetter(ImageParticle::billboard)
     ).apply(instance, ImageParticle::new));
 
@@ -101,7 +103,7 @@ public class ImageParticle extends AbstractParticle {
                 int blue = color & 0xff;
                 int alpha = (color & 0xff000000) >>> 24;
 
-                DustParticleOptions particleOptions = new DustParticleOptions(/*? if >= 1.21.2 {*/ /*ARGB.color(red, green, blue)*//*?} else {*/ new Vector3f((float) red / 255, (float) green / 255, (float) blue / 255) /*?}*/, pixelSize);
+                DustParticleOptions particleOptions = new DustParticleOptions(/*? if >= 1.21.2 {*/ ARGB.color(red, green, blue)/*?} else {*/ /*new Vector3f((float) red / 255, (float) green / 255, (float) blue / 255) *//*?}*/, pixelSize);
                 float reversedX = width - 1 - x;
                 float centeredX = reversedX - ((float) (width - 1) / 2);
                 float reversedY = height - 1 - y;
